@@ -1,11 +1,11 @@
 extends CharacterBody2D
 
-@export_range(0.0, 1.0) var acceleration_factor := 0.1
+@export_range(0.0, 1.0) var acceleration_factor := 0.2
 @export_range(0.0, 1.0) var rotation_acceleration_factor := 0.2
 @export var projectile_scene : PackedScene
 
-@export var max_speed := 300.0
-@export var speed := 0.0
+@export var max_speed := Vector2(300.0, 300.0)
+@export var speed := Vector2.ZERO
 
 var direction := Vector2.ZERO
 var input := Vector2.ZERO
@@ -32,16 +32,12 @@ func _input(event: InputEvent) -> void:
 func fire() -> void:
 	var projectile := projectile_scene.instantiate()
 	projectile.transform = global_transform
-
 	projectile_fired.emit(projectile)
-	
+
 func move() -> void:
-	if input == Vector2.ZERO:
-		speed = lerp(speed, 0.0, acceleration_factor)
-	else:
-		speed = lerp(speed,max_speed, acceleration_factor)
-		
-	velocity = direction * speed
+	var target_velocity = Vector2.ZERO if input == Vector2.ZERO else direction * max_speed
+
+	velocity = lerp(velocity, target_velocity, acceleration_factor)
 	move_and_slide()
 
 func rotate_toward_mouse() -> void:
