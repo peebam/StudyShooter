@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnpssiwpnib67"]
+
+[ext_resource type="Texture2D" uid="uid://dar13yvrvd1o4" path="res://scenes/player/srpites/Ship.png" id="1_mjxnv"]
+[ext_resource type="Script" path="res://scenes/player/scripts/player.gd" id="1_qr0ry"]
+[ext_resource type="PackedScene" uid="uid://bux1qfc3pm6gk" path="res://scenes/projectile/projectile.tscn" id="2_f0o4b"]
+
+[node name="Player" type="CharacterBody2D"]
+rotation = -6.28319
+script = ExtResource("1_qr0ry")
+rotation_acceleration_factor = 0.5
+projectile_scene = ExtResource("2_f0o4b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mjxnv")
