@@ -9,6 +9,7 @@
 z_index = 1
 y_sort_enabled = true
 position = Vector2(229, 138)
+acceleration_factor = 0.1
 
 [node name="ProjectilesFactory" type="Node2D" parent="."]
 script = ExtResource("2_by1ln")
